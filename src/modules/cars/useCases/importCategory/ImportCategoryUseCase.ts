@@ -3,7 +3,7 @@ import {parse} from 'csv-parse'
 import { ICategoryRepository } from '../../repositories/ICategoriesRepository';
 import { inject, injectable } from 'tsyringe';
 
-interface IImporeCategory{
+interface IImportCategory{
     name: string
     description: string
 }
@@ -14,10 +14,10 @@ class ImportCategoryUseCase{
     private categoriesRepository: ICategoryRepository) {}
 
 
-    loadCategories(file: Express.Multer.File): Promise<IImporeCategory[]> {
+    loadCategories(file: Express.Multer.File): Promise<IImportCategory[]> {
       return new Promise((resolve,reject)=>{
         const stream = fs.createReadStream(file.path);
-        const categories: IImporeCategory[] = [];
+        const categories: IImportCategory[] = [];
   
         const parseFile = parse()
   
