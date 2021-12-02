@@ -7,7 +7,6 @@ class AuthenticateUserController {
     constructor() { }
 
     async handle(request:Request, response:Response):Promise<Response>{
-      try{
       const { email, password } = request.body;
 
       const authenticateUserUseCase = container.resolve(AuthenticateUserUseCase)
@@ -15,10 +14,6 @@ class AuthenticateUserController {
       const token = await authenticateUserUseCase.execute({password, email})
 
       return response.json(token)
-    } catch (error) {
-      return response.status(400).json({error:error.message})
-    }
-
     }
 }
 
