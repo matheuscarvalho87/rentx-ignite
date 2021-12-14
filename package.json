@@ -4,9 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn --poll src/server.ts",
+    "dev": "ts-node-dev -r tsconfig-path/register --inspect --transpile-only --ignore-watch node_modules --respawn --poll src/server.ts",
     "lint:fix": "eslint --fix . --ext ts,tsx",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli"
+    "typeorm": "ts-node-dev -r tsconfig-path/register ./node_modules/typeorm/cli",
+    "test": "jest"
   },
   "dependencies": {
     "@types/uuid": "^8.3.3",
@@ -19,7 +20,9 @@
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.1.6",
+    "ts-jest": "^27.0.7",
     "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^3.12.0",
     "tsyringe": "^4.6.0",
     "typeorm": "^0.2.41",
     "uuid": "^8.3.2"
@@ -28,6 +31,7 @@
     "@types/bcrypt": "^5.0.0",
     "@types/csv-parse": "^1.2.2",
     "@types/express": "^4.17.13",
+    "@types/jest": "^27.0.3",
     "@types/jsonwebtoken": "^8.5.6",
     "@types/multer": "^1.4.7",
     "@types/swagger-ui-express": "^4.1.3",
@@ -38,6 +42,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-import-helpers": "^1.1.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.4.3",
     "prettier": "^2.4.1",
     "typescript": "^4.5.2"
   }
