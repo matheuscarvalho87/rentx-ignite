@@ -39,7 +39,7 @@ describe("Authenticate User",()=>{
         email:"false@email.com",
         password:"wrongPass"
       })
-    }).rejects.toBeInstanceOf(AppError)
+    }).rejects.toBeInstanceOf(AppError).catch(err=>{throw err})
   })
 
   it("Should not be able to authenticate an user with wrong password", async ()=>{
@@ -57,7 +57,7 @@ describe("Authenticate User",()=>{
         password:"wrongPass"
       })
 
-    }).rejects.toBeInstanceOf(AppError)
+    }).rejects.toBeInstanceOf(AppError).catch(err=>{throw err})
   })
 
   it("Should not be able to authenticate an user with wrong email", async ()=>{
@@ -75,7 +75,7 @@ describe("Authenticate User",()=>{
           password:user.password
       })
 
-    } ).rejects.toBeInstanceOf(AppError)
+    } ).rejects.toBeInstanceOf(AppError).catch(err=>{throw err})
   })
 
 })

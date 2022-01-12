@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 import { CreateSpecificationController } from '@modules/cars/useCases/createSpecification/CreateSpecificationController';
 import { ListSpecificationController } from '@modules/cars/useCases/listSpecification/ListSpecificationController';
+import { ensureAdmin } from '../middlewares/ensureAdmin';
 
 
 
@@ -13,8 +14,8 @@ const listSpecificationController = new ListSpecificationController()
 
 specificationsRoutes.use(ensureAuthenticated)
 
-specificationsRoutes.get('/', listSpecificationController.handle );
+specificationsRoutes.get('/',ensureAuthenticated,ensureAdmin,listSpecificationController.handle );
 
-specificationsRoutes.post('/', createSpecificationController.handle)
+specificationsRoutes.post('/',ensureAuthenticated,ensureAdmin,createSpecificationController.handle)
 
 export { specificationsRoutes };
