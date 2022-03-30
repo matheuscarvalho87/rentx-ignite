@@ -1,67 +1,66 @@
 import { CarsRepositoryInMemory } from '@modules/cars/repositories/in-memory/CarsRepositoryInMemory'
-import { AppError } from '@shared/errors/AppError'
 import { CreateCarUseCase } from './CreateCarUseCase'
+import { AppError } from '@shared/errors/AppError'
 
 
 let createCarUseCase: CreateCarUseCase
 let carsRepositoryInMemory: CarsRepositoryInMemory
 
-describe("Create car",()=>{
-  beforeEach(()=>{
-    carsRepositoryInMemory = new CarsRepositoryInMemory()
-    createCarUseCase = new CreateCarUseCase(carsRepositoryInMemory)
-  })
+describe("Create Car", () => {
+  beforeEach(() => {
+    carsRepositoryInMemory = new CarsRepositoryInMemory();
+    createCarUseCase = new CreateCarUseCase(carsRepositoryInMemory);
+  });
 
-  it("Should be able to create a new car",async()=>{
+  it("should be able to create a new car", async () => {
     const car = await createCarUseCase.execute({
-      name:"Fusca",
-      description: "Carro de luxo",
+      name: "Name Car",
+      description: "Description Car",
       daily_rate: 100,
       license_plate: "ABC-1234",
-      fine_amount: 10,
-      brand:  "VW",
-      category_id: "1"
-    })
+      fine_amount: 60,
+      brand: "Brand",
+      category_id: "category",
+    });
 
-    expect(car).toHaveProperty("id")
-  })
+    expect(car).toHaveProperty("id");
+  });
 
-  it("Should not be able to create a car with the same license_plate",async()=>{
-    expect(async()=>{
-      await createCarUseCase.execute({
-        name:"Fusca",
-        description: "Carro de luxo",
+  it("should not be able to create a car with exists license plate", async () => {
+    await createCarUseCase.execute({
+      name: "Car1",
+      description: "Description Car",
+      daily_rate: 100,
+      license_plate: "ABC-1234",
+      fine_amount: 60,
+      brand: "Brand",
+      category_id: "category",
+    });
+
+    await expect(
+      createCarUseCase.execute({
+        name: "Car2",
+        description: "Description Car",
         daily_rate: 100,
         license_plate: "ABC-1234",
-        fine_amount: 10,
-        brand:  "VW",
-        category_id: "1"
+        fine_amount: 60,
+        brand: "Brand",
+        category_id: "category",
       })
-    })
+    ).rejects.toEqual(new AppError("Car already exists"));
+  });
 
-    expect(async()=>{
-      await createCarUseCase.execute({
-        name:"Fusca2",
-        description: "Carro de luxo",
-        daily_rate: 100,
-        license_plate: "ABC-1234",
-        fine_amount: 10,
-        brand:  "VW",
-        category_id: "1"
-      })
-    }).rejects.toBeInstanceOf(AppError).catch(err=>{throw err})
-  })
-  it("Should be able to create a car with available true by default",async ()=>{
+  it("should not be able to create a car with available true by default", async () => {
     const car = await createCarUseCase.execute({
-      name:"Fusca Available",
-      description: "Carro de luxo",
+      name: "Car Available",
+      description: "Description Car",
       daily_rate: 100,
       license_plate: "ABCD-1234",
-      fine_amount: 10,
-      brand:  "VW",
-      category_id: "1"
-    })
+      fine_amount: 60,
+      brand: "Brand",
+      category_id: "category",
+    });
 
-    expect(car.available).toBe(true)
-  })
+    expect(car.available).toBe(true);
+  });
 })

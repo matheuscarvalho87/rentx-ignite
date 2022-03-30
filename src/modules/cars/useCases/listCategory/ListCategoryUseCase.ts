@@ -3,10 +3,6 @@ import { Category } from '../../infra/typeorm/entities/Category';
 import { Specification } from '../../infra/typeorm/entities/Specification';
 import { ICategoryRepository } from '../../repositories/ICategoriesRepository';
 
-interface IRequest{
-  name:string;
-  description:string;
-}
 @injectable()
 class ListCategoryUseCase {
 
@@ -15,7 +11,7 @@ class ListCategoryUseCase {
     private categoriesRepository: ICategoryRepository)
     {}
 
-  async execute(): Promise<Specification[] >{
+  async execute(): Promise<Category[] >{
     const categories = await this.categoriesRepository.list();
     return categories;
   }

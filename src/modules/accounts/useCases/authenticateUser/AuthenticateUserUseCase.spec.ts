@@ -28,6 +28,8 @@ describe("Authenticate User",()=>{
     const result = await authenticateUserUseCase.execute({
       email:user.email,
       password:user.password
+    }).catch(err=>{
+      throw err
     })
 
     expect(result).toHaveProperty('token')

@@ -10,6 +10,7 @@ export class CreateUsers1637894774690 implements MigrationInterface {
                     {
                         name: "id",
                         type: "uuid",
+                        isPrimary: true,
                     },
                     {
                         name: "name",
@@ -42,7 +43,7 @@ export class CreateUsers1637894774690 implements MigrationInterface {
                         type: "timestamp",
                         default: "now()"
                     }
-                    
+
                 ]
             })
         )

@@ -1,6 +1,6 @@
-import { CreateCarSpecificationUseCase } from './CreateCarSpecificationUseCase'
 import { CarsRepositoryInMemory } from '../../repositories/in-memory/CarsRepositoryInMemory'
 import { SpecificationsRepositoryInMemory } from '../../repositories/in-memory/SpecificationsRepositoryInMemory'
+import { CreateCarSpecificationUseCase } from './CreateCarSpecificationUseCase'
 import { AppError } from '@shared/errors/AppError'
 
 let createCarSpecificationUseCase: CreateCarSpecificationUseCase
@@ -12,7 +12,7 @@ describe("Create Car Specification",()=>{
     carsRepositoryInMemory = new CarsRepositoryInMemory()
     specificationsRepositoryInMemory = new SpecificationsRepositoryInMemory()
     createCarSpecificationUseCase = new CreateCarSpecificationUseCase(
-      carsRepositoryInMemory, 
+      carsRepositoryInMemory,
       specificationsRepositoryInMemory
     )
   })
