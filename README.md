@@ -57,3 +57,28 @@ Deve ser possível cadastrar um aluguel.
 O aluguel deve ter duração mínima de 24horas.
 Não deve ser possível cadastrar um novo aluguel caso ja exista um aberto para o mesmo usuário.
 Não deve ser possível cadastrar um novo aluguel caso ja exista um aberto para o mesmo carro.
+Ao realizar devoulção, o status do carro deverá ser alterado para indisponível
+
+# Devolução de carros
+
+**RF**
+Deve ser possível realizar a devolução de um carro.
+
+**RN**
+Se o carro for devolvido com menos de 24 horas, deverá ser cobrado diaria completa.
+Ao realizar a devolução, o carro deverá ser liberado para outro aluguel
+Ao realizar a devolução, o usuário devera ser liberado para outro aluguel
+Ao relizar a devolução, deverá ser calculdo o total do aluguel.
+Caso o horario de devolução seja superior ao horario previsto de entraga, deverá ser cobrado multa proporcional aos dias de atraso
+Caso haja multa, deverá ser somado ao total do aluguel
+O usuáriodeve estar logado na aplicação
+
+
+TO REMEMBER
+
+TYPE ORM 
+yarn typeorm migration:run
+
+yarn seed:admin
+no banco fazer login e senha: admin
+
