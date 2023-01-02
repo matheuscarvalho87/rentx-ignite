@@ -75,8 +75,9 @@ O usuáriodeve estar logado na aplicação
 
 
 TO REMEMBER
+the app run just in the docker, you don't need to start localy
 
-TYPE ORM 
+TYPE ORM
 yarn typeorm migration:run
 
 yarn seed:admin
